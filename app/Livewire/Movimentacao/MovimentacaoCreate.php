@@ -42,7 +42,7 @@ class MovimentacaoCreate extends Component
         }
 
         Movimentacao::create([
-            'quantidade' => $this->quantidade_movimentada,
+            'quantidade_movimentada' => $this->quantidade_movimentada,
             'data_movimentacao' => $this->data_movimentacao,
             'tipo' => $this->tipo,
             'material_id' => $this->material_id,

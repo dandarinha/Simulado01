@@ -5,59 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Almoxarifado') }} - Gestão de Materiais</title>
+    <title>{{ config('app.name', 'Almoxarifado') }} Almoxarifado - Gestão de Materiais</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     @livewireStyles
 </head>
 
 <body class="bg-light d-flex flex-column min-vh-100">
-         @if (!request()->routeIs('login'))
+    
+    @if (!request()->routeIs('login'))
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <i class="bi bi-tools text-warning me-2"></i>Almoxarifado
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../material"><i class="bi bi-box-seam me-1"></i> Ferramentas / Materiais</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="movimentacao/create"><i class="bi bi-arrow-left-right me-1"></i> Movimentações</a>
+                        </li>
+                    
+                    </ul>
 
+                    <div class="d-flex flex-wrap gap-2 me-lg-3 my-2 my-lg-0">
+                        <a href="material/create" class="btn btn-warning btn-sm fw-bold">
+                            <i class="bi bi-plus-lg me-1"></i> Cadastrar Material
+                        </a>
+                        
+                    </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-tools text-warning me-2"></i>Almoxarifado
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="bi bi-house-door me-1"></i> Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-box-seam me-1"></i> Ferramentas / Materiais</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-arrow-left-right me-1"></i> Movimentações</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-people me-1"></i> Colaboradores</a>
-                    </li>
-                </ul>
-
-                <div class="d-flex flex-wrap gap-2 me-lg-3 my-2 my-lg-0">
-                    <a href="#" class="btn btn-warning btn-sm fw-bold">
-                        <i class="bi bi-plus-lg me-1"></i> Cadastrar Material
-                    </a>
-                    <a href="#" class="btn btn-outline-light btn-sm fw-bold">
-                        <i class="bi bi-person-plus-fill me-1"></i> Cadastrar Colaborador
-                    </a>
                 </div>
-
-                <span class="navbar-text text-light border-start ps-lg-3">
-                    <i class="bi bi-person-circle me-1"></i> Operador
-                </span>
             </div>
-        </div>
-    </nav>
-
+        </nav>
+    @endif
 
     <main class="container my-4 flex-grow-1">
         @if (session()->has('message'))
@@ -69,8 +58,6 @@
 
         {{ $slot }}
     </main>
-
-    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 

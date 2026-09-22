@@ -12,7 +12,7 @@
     @endif
 
     <div class="mb-3">
-        <input type="text" wire:model.live='search' placeholder="pesquisar..." class="form-control">
+        <input type="text" wire:model.live='search' placeholder="Pesquisar..." class="form-control">
     </div>
 
     <table class="table table-hover table-striped">
@@ -28,20 +28,25 @@
         </thead>
         <tbody>
             @foreach ($movimentacaos as $m)
-            <tr>
-                <td>{{$m->material->id}} - {{$m->material->material}}</td>
-                <td>@if($m->tipo == 'ENTRADA')
+            <tr wire:key="movimentacao-{{ $m->id }}">
+                <td>{{ $m->material->id }} - {{ $m->material->material }}</td>
+                <td>
+                    @if($m->tipo == 'ENTRADA')
                     <span class="badge bg-primary">ENTRADA</span>
                     @else
                     <span class="badge bg-danger">SAÍDA</span>
                     @endif
                 </td>
-                <td>{{$m->quantidade}}</td>
-                <td>{{\Carbon\Carbon::parse($m->data_movimentacao)
-                    ->format('d-m-Y')}}</td>
-                <td>{{$m->user_id}} - {{$m->user->name}}</td>
-                <td><button wire:click='delete({{$m->id}})' class="btn btn-sm btn-danger">Excluir</button></td>
-                </td>
+                <td>{{ $m->quantidade_movimentada }}</td>
+                <td>{{ \Carbon\Carbon::parse($m->data_movimentacao)->format('d/m/Y') }}</td>
+                <td>{{ $m->user_id }} - {{ $m->user->name }}</td>
+                <td>
+                    <button wire:click="delete({{ $m->id }})" 
+                            wire:confirm="Tem certeza que deseja excluir esta movimentação?" 
+                            class="btn btn-sm btn-danger">
+                        Excluir
+                    </button>
+                </td> 
             </tr>
             @endforeach
         </tbody>

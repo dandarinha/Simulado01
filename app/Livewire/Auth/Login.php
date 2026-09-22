@@ -6,8 +6,6 @@ namespace App\Livewire\Auth;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-use function Laravel\Prompts\password;
-
 class Login extends Component
 {
 
@@ -33,7 +31,7 @@ class Login extends Component
             'password' => $this->password
         ])) {
             session()->regenerate();
-            return redirect()->route('movimentacao.index');
+            return redirect()->route('material.index');
         }
         session()->flash('error', 'Email ou senha inválidos');
     }

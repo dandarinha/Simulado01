@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('movimentacaos', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantidade');
+            $table->integer('quantidade_movimentada');
             $table->date('data_movimentacao');
             $table->enum('tipo', ['ENTRADA', 'SAIDA']);
             $table->foreignId('user_id')->constrained();
